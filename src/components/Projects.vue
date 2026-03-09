@@ -8,9 +8,11 @@ const position = ref(1)
 const index = ref(0)
 const count = projectsData.length
 const totalSlides = count + 2
+const TRANSITION_MS = 400
 const TRANSITION = '0.4s cubic-bezier(0.22, 1, 0.36, 1)'
 const AUTOPLAY_MS = 5500
 let autoplayTimer = null
+let resetTimeoutId = null
 
 const slides = computed(() => {
   const list = [...projectsData]
@@ -31,8 +33,11 @@ function setPosition(pos, noTransition) {
   }
 }
 
-function onTransitionEnd(e) {
-  if (e.target !== trackRef.value || e.propertyName !== 'transform') return
+function resetFromClone() {
+  if (resetTimeoutId) {
+    clearTimeout(resetTimeoutId)
+    resetTimeoutId = null
+  }
   if (position.value === 0) {
     position.value = count
     index.value = count - 1
@@ -44,17 +49,42 @@ function onTransitionEnd(e) {
   }
 }
 
+function onTransitionEnd(e) {
+  if (e.target !== trackRef.value) return
+  const prop = (e.propertyName || '').toLowerCase()
+  if (prop !== 'transform' && !prop.includes('transform')) return
+  resetFromClone()
+}
+
+function scheduleResetFallback() {
+  if (resetTimeoutId) clearTimeout(resetTimeoutId)
+  resetTimeoutId = setTimeout(() => {
+    if (position.value === 0 || position.value === totalSlides - 1) {
+      resetFromClone()
+    }
+    resetTimeoutId = null
+  }, TRANSITION_MS + 50)
+}
+
 function goNext() {
+  if (position.value >= totalSlides - 1) return
   position.value++
   setPosition(position.value, false)
-  if (position.value === totalSlides - 1) return
+  if (position.value === totalSlides - 1) {
+    scheduleResetFallback()
+    return
+  }
   index.value = (index.value + 1) % count
 }
 
 function goPrev() {
+  if (position.value <= 0) return
   position.value--
   setPosition(position.value, false)
-  if (position.value === 0) return
+  if (position.value === 0) {
+    scheduleResetFallback()
+    return
+  }
   index.value = (index.value - 1 + count) % count
 }
 
@@ -120,6 +150,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   if (autoplayTimer) clearInterval(autoplayTimer)
+  if (resetTimeoutId) clearTimeout(resetTimeoutId)
   trackRef.value?.removeEventListener('transitionend', onTransitionEnd)
 })
 </script>
