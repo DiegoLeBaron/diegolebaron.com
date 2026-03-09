@@ -455,6 +455,12 @@ body::after {
   overflow: hidden;
   max-width: 100%;
 }
+.projects-carousel-slide-wrap {
+  flex: 0 0 100%;
+  min-width: 0;
+  padding: 2.5rem;
+  box-sizing: border-box;
+}
 .projects-carousel-inner {
   display: flex;
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
@@ -492,8 +498,6 @@ body::after {
   position: relative;
   border-radius: 0.5rem;
   overflow: hidden;
-  background: rgba(24, 24, 27, 0.6);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
   height: 100%;
   min-height: 120px;
 }
@@ -507,7 +511,8 @@ body::after {
   width: 100%;
   height: 100%;
   min-height: 120px;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
 }
 @media (min-width: 768px) {
   .project-card-img {
@@ -523,6 +528,7 @@ body::after {
   list-style: none;
   margin: 0;
   padding: 0;
+  margin-bottom: .5rem;
 }
 .project-tag {
   display: inline-block;
@@ -881,6 +887,12 @@ body.modal-open #mobile-nav {
 }
 .tech-icon-ubuntu img {
   filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(346deg) brightness(98%) contrast(94%);
+}
+.tech-icon-cursor img {
+  filter: grayscale(1) brightness(1.15);
+}
+.tech-icon-tailwind img {
+  filter: brightness(0) saturate(100%) invert(72%) sepia(49%) saturate(999%) hue-rotate(166deg) brightness(95%) contrast(91%);
 }
 
 /* Hero: exactly one viewport so scroll button is at bottom of window; 100dvh for mobile URL bar */

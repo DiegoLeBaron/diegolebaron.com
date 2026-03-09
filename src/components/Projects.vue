@@ -62,6 +62,13 @@ function startAutoplay() {
   autoplayTimer = setInterval(goNext, AUTOPLAY_MS)
 }
 
+function stopAutoplay() {
+  if (autoplayTimer) {
+    clearInterval(autoplayTimer)
+    autoplayTimer = null
+  }
+}
+
 function goToSlide(j) {
   position.value = j + 1
   index.value = j
@@ -100,20 +107,23 @@ onUnmounted(() => {
       <p class="text-xs font-medium uppercase tracking-widest text-zinc-500 mb-4 text-center">Projects</p>
       <h2 class="text-2xl md:text-3xl font-bold text-zinc-100 tracking-tight mb-12 text-center">What I've done</h2>
       <div class="projects-carousel">
-        <div class="projects-carousel-viewport">
+        <div
+          class="projects-carousel-viewport"
+          @mouseenter="stopAutoplay"
+          @mouseleave="startAutoplay"
+        >
           <div
             ref="trackRef"
             class="projects-carousel-inner"
             id="projects-track"
           >
-            <article
-              v-for="(project, i) in slides"
-              :key="`${project.id}-${i}`"
-              class="project-card project-card-tilt rounded-xl border border-border bg-zinc-900/30 backdrop-blur-sm overflow-hidden flex flex-col md:flex-row"
-              @mousemove="onCardMouseMove"
-              @mouseleave="onCardMouseLeave"
-            >
-              <div class="project-card-image-wrap flex-shrink-0">
+            <div v-for="(project, i) in slides" :key="`${project.id}-${i}`" class="projects-carousel-slide-wrap">
+              <article
+                class="project-card project-card-tilt rounded-xl border border-border bg-zinc-900/30 backdrop-blur-sm overflow-hidden flex flex-col md:flex-row h-full"
+                @mousemove="onCardMouseMove"
+                @mouseleave="onCardMouseLeave"
+              >
+                <div class="project-card-image-wrap flex-shrink-0">
                 <div class="project-card-image" aria-hidden="true">
                   <img :src="project.image" alt="" class="project-card-img" width="800" height="480" />
                 </div>
@@ -126,7 +136,8 @@ onUnmounted(() => {
                 </ul>
                 <p class="text-sm text-zinc-400 leading-relaxed flex-1">{{ project.description }}</p>
               </div>
-            </article>
+              </article>
+            </div>
           </div>
         </div>
         <button type="button" class="projects-carousel-btn projects-carousel-prev" aria-label="Previous project" @click="goPrev(); startAutoplay()">
