@@ -2,6 +2,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { projects as projectsData } from '@/data/projects'
 
+const baseUrl = import.meta.env.BASE_URL
 const trackRef = ref(null)
 const position = ref(1)
 const index = ref(0)
@@ -125,7 +126,7 @@ onUnmounted(() => {
               >
                 <div class="project-card-image-wrap flex-shrink-0">
                 <div class="project-card-image" aria-hidden="true">
-                  <img :src="project.image" alt="" class="project-card-img" width="800" height="480" />
+                  <img :src="`${baseUrl}${project.image}`" alt="" class="project-card-img" width="800" height="480" />
                 </div>
               </div>
               <div class="project-card-body p-4 md:p-5 flex flex-col flex-1 min-w-0">

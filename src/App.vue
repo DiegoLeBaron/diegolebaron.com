@@ -33,7 +33,7 @@ function scrollTo(el) {
 let switchSound = null
 function initSounds() {
   try {
-    switchSound = new Audio('/sounds/switch-page.mp3')
+    switchSound = new Audio(`${import.meta.env.BASE_URL}sounds/switch-page.mp3`)
   } catch (_) {}
 }
 

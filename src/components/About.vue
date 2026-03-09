@@ -1,4 +1,6 @@
 <script setup>
+const baseUrl = import.meta.env.BASE_URL
+
 function onCardMouseMove(e) {
   const card = e.currentTarget
   const rect = card.getBoundingClientRect()
@@ -25,7 +27,7 @@ function onCardMouseLeave(e) {
           @mouseleave="onCardMouseLeave"
         >
           <div class="about-photo-wrap">
-            <img src="/assets/images/photo.png" alt="Diego LeBaron" class="about-photo" width="280" height="320" />
+            <img :src="`${baseUrl}assets/images/photo.png`" alt="Diego LeBaron" class="about-photo" width="280" height="320" />
           </div>
         </div>
         <div
