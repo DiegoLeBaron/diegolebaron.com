@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <style>
+      @font-face {
+        font-family: 'Amsterdam Handwriting';
+        font-style: normal;
+        font-weight: 400;
+        src: url('https://fonts.cdnfonts.com/s/84930/AmsterdamhandwritingRegular-6Y1Vo.woff') format('woff');
+      }
+      .logo-d {
+        font-family: 'Amsterdam Handwriting', cursive;
+        font-size: 28px;
+        font-weight: bold;
+        line-height: 1;
+      }
+      @media (prefers-color-scheme: dark) { .logo-d { fill: #fafafa; } }
+      @media (prefers-color-scheme: light) { .logo-d { fill: #0a0a0a; } }
+    </style>
+  </defs>
+  <text x="50%" y="50%" class="logo-d" text-anchor="middle" dominant-baseline="central">D</text>
+</svg>

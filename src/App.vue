@@ -78,30 +78,9 @@ function handleHashClick(e) {
 
 watch(openModalId, (id) => {
   if (id) {
-    const scrollY = window.scrollY ?? window.pageYOffset
     document.body.classList.add('modal-open')
-    document.body.style.position = 'fixed'
-    document.body.style.top = `-${scrollY}px`
-    document.body.style.left = '0'
-    document.body.style.right = '0'
-    document.body.style.overflow = 'hidden'
-    document.body.style.width = '100%'
-    document.body.dataset.modalScrollY = String(scrollY)
-    if (lenis && typeof lenis.stop === 'function') lenis.stop()
   } else {
-    const scrollY = document.body.dataset.modalScrollY
-      ? parseInt(document.body.dataset.modalScrollY, 10)
-      : 0
     document.body.classList.remove('modal-open')
-    document.body.style.position = ''
-    document.body.style.top = ''
-    document.body.style.left = ''
-    document.body.style.right = ''
-    document.body.style.overflow = ''
-    document.body.style.width = ''
-    delete document.body.dataset.modalScrollY
-    window.scrollTo(0, scrollY)
-    if (lenis && typeof lenis.start === 'function') lenis.start()
   }
 })
 
