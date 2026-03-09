@@ -90,6 +90,28 @@ function onCardMouseLeave(e) {
   e.currentTarget.style.transform = ''
 }
 
+const touchStartX = ref(0)
+const touchStartY = ref(0)
+const SWIPE_THRESHOLD = 50
+
+function onTouchStart(e) {
+  if (e.touches.length !== 1) return
+  touchStartX.value = e.touches[0].clientX
+  touchStartY.value = e.touches[0].clientY
+}
+
+function onTouchEnd(e) {
+  if (e.changedTouches.length !== 1) return
+  const dx = e.changedTouches[0].clientX - touchStartX.value
+  if (dx < -SWIPE_THRESHOLD) {
+    goNext()
+    startAutoplay()
+  } else if (dx > SWIPE_THRESHOLD) {
+    goPrev()
+    startAutoplay()
+  }
+}
+
 onMounted(() => {
   setPosition(position.value, true)
   startAutoplay()
@@ -112,6 +134,8 @@ onUnmounted(() => {
           class="projects-carousel-viewport"
           @mouseenter="stopAutoplay"
           @mouseleave="startAutoplay"
+          @touchstart.passive="onTouchStart"
+          @touchend="onTouchEnd"
         >
           <div
             ref="trackRef"

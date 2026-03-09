@@ -207,7 +207,7 @@ body::after {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
 }
 
-/* Header mobile: flush to top (safe area only), glassmorphism */
+/* Header mobile: always visible, no scroll hide */
 @media (max-width: 767px) {
   .header-bar {
     position: fixed;
@@ -220,7 +220,11 @@ body::after {
     padding-left: 0;
     padding-right: 0;
     margin: 0;
-    background: transparent;
+    background: rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    transform: translateZ(0);
+    will-change: transform;
   }
   .nav-pill {
     max-width: none;
@@ -568,6 +572,18 @@ body::after {
 .projects-carousel-next {
   right: 0;
 }
+@media (max-width: 767px) {
+  .projects-carousel {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .projects-carousel-btn {
+    display: none;
+  }
+  .projects-carousel-slide-wrap {
+    padding: 0 0 1rem;
+  }
+}
 .projects-dots {
   display: flex;
   justify-content: center;
@@ -637,7 +653,7 @@ body::after {
   display: none;
 }
 .timeline-modal-backdrop {
-  position: absolute;
+  position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   -webkit-backdrop-filter: blur(0);
