@@ -16,7 +16,7 @@ export const techIcons = [
   devicon('typescript', 'typescript-original.svg', 'TypeScript'),
   devicon('javascript', 'javascript-original.svg', 'JavaScript'),
   devicon('react', 'react-original.svg', 'React'),
-  devicon('electron', 'devicon-electron-original.svg', 'Electron JS'),
+  devicon('electron', 'electron-original.svg', 'Electron JS'),
   devicon('php', 'php-original.svg', 'PHP'),
   devicon('laravel', 'laravel-original.svg', 'Laravel'),
   devicon('mysql', 'mysql-original.svg', 'MySQL'),
