@@ -71,7 +71,7 @@ export const workMore = [
 
 export const timelineVizypay = [
   { dateStart: '2026-09', dateEnd: 'current', dateLabel: 'Sept 2026 – Current', title: 'Senior Forward-Deployed Engineer', accent: true, description: 'Embedded with partners to rapidly ship full-stack integrations (Angular, NestJS, Vue, PHP, Laravel) from prototype to production on AWS, Cloudflare, and Docker.' },
-  { dateStart: '2025-12', dateEnd: '2026-09', dateLabel: 'Dec 2025 – Sept 2027', title: 'Software Engineer II', accent: true, description: 'Full-stack (Angular, Nest.js, Vue, PHP, Laravel). Managing production environments with Cloudflare, Digital Ocean, Docker.' },
+  { dateStart: '2025-12', dateEnd: '2026-09', dateLabel: 'Dec 2025 – Sept 2027', title: 'Software Engineer II', accent: false, description: 'Full-stack (Angular, Nest.js, Vue, PHP, Laravel). Managing production environments with Cloudflare, Digital Ocean, Docker.' },
   { dateStart: '2024-03', dateEnd: '2025-12', dateLabel: 'Mar 2024 – Dec 2025', title: 'Network & Software Engineer', accent: false, description: 'Office network and infrastructure. 16+ environments (Cloudflare, Digital Ocean, Plesk). Angular, Nest.js, Vue, PHP, Laravel, MySQL.' },
   { dateStart: '2022-09', dateEnd: '2024-03', dateLabel: 'Sept 2022 – Mar 2024', title: 'Software Developer', accent: false, description: 'Vue.js, PHP, Laravel, MySQL. Cloudflare, Digital Ocean. Cross-functional collaboration.' },
 ]
